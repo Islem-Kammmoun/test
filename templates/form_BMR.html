@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prédicteur d'infection BMR</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-image: url('https://static.vecteezy.com/system/resources/previews/007/784/841/non_2x/health-and-science-medical-innovation-concept-abstract-geometric-futuristic-background-from-hexagons-pattern-light-blue-radiant-background-illustration-vector.jpg');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1 {
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            color: rgba(15, 180, 255, 1);
+            display: block;
+            justify-content: center;
+        }
+
+        .form {
+            top: 50%;
+            left: 50%;
+            width: 35%;
+            height: 695px;
+            background: rgba(227, 253, 255, 0.797);
+            box-sizing: border-box;
+            box-shadow: 0 15px 25px rgba(130, 147, 148, 0.797);
+            border-radius: 10px;
+        }
+
+        form {
+            background-color: transparent;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            width: 40%;
+            margin-left: 30%;
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+            display: block;
+            border: transparent;
+            cursor: pointer;
+            margin-top: 5%;
+            font-family: 'Poppins', sans-serif;
+            background-color: rgba(227, 253, 255, 0.399);
+            position: relative;
+            border-radius: 7px;
+            font-size: 16px;
+            letter-spacing: 2px;
+            color: rgba(15, 180, 255, 1);
+            overflow: hidden;
+            -webkit-transition: all 0.2s ease-in;
+            -moz-transition: all 0.2s ease-in;
+            transition: all 0.2s ease-in;
+        }
+
+        input[type="submit"]:hover {
+            color: #fff;
+            box-shadow: 0 0 30px 5px rgba(123, 244, 255, 0.469);
+            -webkit-transition: all 0.2s ease-out;
+            -moz-transition: all 0.2s ease-out;
+            transition: all 0.2s ease-out;
+            background: rgb(2, 0, 36);
+            background: linear-gradient(90deg, rgb(124, 189, 254) 0%, rgb(104, 203, 223) 100%);
+        }
+
+        input[type="submit"]:active {
+            transform: translate(0em, 0.2em);
+        }
+
+        /* Input container */
+        .input-container {
+            position: relative;
+            margin: 20px;
+        }
+
+        /* Input field */
+        .input-field {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-bottom: 2px solid #ccc;
+            outline: none;
+            background-color: transparent;
+        }
+
+        /* Input label */
+        .input-label {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 16px;
+            color: rgba(204, 204, 204, 0);
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        /* Input highlight */
+        .input-highlight {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 2px;
+            width: 0;
+            background-color: rgba(15, 180, 255, 1);
+            transition: all 0.3s ease;
+            border-width: 3px;
+            border-image: linear-gradient(90deg, rgba(30, 144, 255, 1) 0%, rgba(0, 212, 255, 1) 100%);
+            border-image-slice: 1;
+        }
+
+        /* Input field:focus styles */
+        .input-field:focus+.input-label {
+            top: -20px;
+            font-size: 14px;
+            padding-bottom: 6px;
+            color: rgba(15, 180, 255, 1);
+            font-weight: 100;
+            border-width: 3px;
+            border-image: linear-gradient(90deg, rgba(30, 144, 255, 1) 0%, rgba(0, 212, 255, 1) 100%);
+            border-image-slice: 1;
+        }
+
+        .input-field:focus+.input-label+.input-highlight {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Prédicteur d'infection bactérienne</h1>
+    <div class="form">
+        <form action="/predictBMR" method="post">
+            <!-- Add input fields for user information -->
+
+            <div class="input-container">
+                <input placeholder="Durée infection : entrée - date infection "
+                    name="Durée infection : entrée - date infection " class="input-field" type="float" required=""
+                    min="0">
+                <label for="input-field" class="input-label">Durée infection : entrée - date infection</label>
+                <span class="input-highlight"></span>
+            </div>
+
+            <div class="input-container">
+                <input placeholder="Age" name="Age" class="input-field" type="number" required="" min="0" max="120">
+                <label for="input-field" class="input-label">Age</label>
+                <span class="input-highlight"></span>
+            </div>
+
+            <div class="input-container">
+                <input placeholder="S à AA (entrée)" name="S à AA (entrée)" class="input-field" type="float" min="0"
+                    max="1" required="">
+                <label for="input-field" class="input-label">S à AA (entrée)</label>
+                <span class="input-highlight"></span>
+            </div>
+
+            <div class="input-container">
+                <select name="Qsofa" class="input-field" type="number">
+                    <option value="Qsofa">Qsofa</option>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+                <label for="input-field" class="input-label">Qsofa</label>
+                <span class="input-highlight"></span>
+            </div>
+
+            <div class="input-container">
+                <select name="Cathéters centrau" class="input-field" type="number">
+                    <option value="">Cathéters centrau</option>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                </select>
+                <label for="input-field" class="input-label">Cathéters centrau</label>
+                <span class="input-highlight"></span>
+            </div>
+
+            <div class="input-container">
+                <select name="Cathéters artériels" class="input-field" type="number">
+                    <option value="">Cathéters artériels</option>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                </select>
+                <label for="input-field" class="input-label">Cathéters artériels</label>
+                <span class="input-highlight"></span>
+            </div>
+
+            <div class="input-container">
+                <select name="DYSLIPEDIIE" class="input-field" type="number">
+                    <option value="">DYSLIPEDIIE</option>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                </select>
+                <label for="input-field" class="input-label">DYSLIPEDIIE</label>
+                <span class="input-highlight"></span>
+            </div>
+
+            <div class="input-container">
+                <select name="AINOSIDE" class="input-field" type="number">
+                    <option value="">AINOSIDE</option>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                </select>
+                <label for="input-field" class="input-label">AINOSIDE</label>
+                <span class="input-highlight"></span>
+            </div>
+
+            <div class="input-container">
+                <select name="HTA" class="input-field" type="number">
+                    <option value="">HTA</option>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                </select>
+                <label for="input-field" class="input-label">HTA</label>
+                <span class="input-highlight"></span>
+            </div>
+
+            <div class="input-container">
+                <select name="AZITHRO" class="input-field" type="number">
+                    <option value="">AZITHRO</option>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                </select>
+                <label for="input-field" class="input-label">AZITHRO</label>
+                <span class="input-highlight"></span>
+            </div>
+
+            <input type="submit" value="Prédire l'infection">
+
+        </form>
+    </div>
+</body>
+
+</html>

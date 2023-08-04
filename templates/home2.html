@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prédicteur d'infection BMR</title>
+    <link rel="icon"
+        href="https://www.google.com/url?sa=i&url=https%3A%2F%2Ffr-fr.facebook.com%2Fpeople%2FMedicacom%2F100069323475859%2F&psig=AOvVaw2EC34uds9WAq5fnFWJj0Ht&ust=1691101205003000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCJDGgYeBv4ADFQAAAAAdAAAAABAE">
+
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ysabeau:wght@300&display=swap');
+
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            position: center;
+        }
+
+        img {
+            margin-left: auto;
+            margin-right: auto;
+            width: 30%;
+
+        }
+
+        .logo img {
+            filter: brightness(0) invert(1);
+            -webkit-filter: brightness(0) invert(1);
+            -webkit-transition: all 0.3s;
+            transition: all 0.3s;
+        }
+
+        .welcome {
+            display: flex;
+            align-items: flex-start;
+            position: center;
+            margin-left: 4%;
+            justify-content: center;
+        }
+
+        h2 {
+            font-family: 'Poppins', sans-serif;
+            width: 600px;
+            height: 50px;
+            position: center;
+            color: rgb(255, 255, 255);
+            justify-content: center;
+        }
+
+        .buttons {
+            display: block;
+            margin-left: 50%;
+            margin-top: 14%;
+            position: absolute;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+
+        button {
+            display: block;
+            border: 2px solid #fff;
+            cursor: pointer;
+            margin: 50px;
+            font-family: 'Poppins', sans-serif;
+            width: 500px;
+            background-color: hsla(0, 0%, 62%, 0.25);
+            position: relative;
+            padding: 10px 20px;
+            border-radius: 7px;
+            font-size: 14px;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: #fff;
+            overflow: hidden;
+            box-shadow: 0 0 0 0 transparent;
+            -webkit-transition: all 0.2s ease-in;
+            -moz-transition: all 0.2s ease-in;
+            transition: all 0.2s ease-in;
+        }
+
+        button:hover {
+            background: rgb(104, 203, 223);
+            ;
+            box-shadow: 0 0 30px 5px rgb(105, 181, 214);
+            -webkit-transition: all 0.2s ease-out;
+            -moz-transition: all 0.2s ease-out;
+            transition: all 0.2s ease-out;
+        }
+
+        button:hover::before {
+            -webkit-animation: sh02 0.5s 0s linear;
+            -moz-animation: sh02 0.5s 0s linear;
+            animation: sh02 0.5s 0s linear;
+        }
+
+        button::before {
+            content: '';
+            display: block;
+            width: 0px;
+            height: 86%;
+            position: absolute;
+            top: 7%;
+            left: 0%;
+            opacity: 0;
+            background: #fff;
+            box-shadow: 0 0 50px 30px #fff;
+            -webkit-transform: skewX(-20deg);
+            -moz-transform: skewX(-20deg);
+            -ms-transform: skewX(-20deg);
+            -o-transform: skewX(-20deg);
+            transform: skewX(-20deg);
+        }
+
+        @keyframes sh02 {
+            from {
+                opacity: 0;
+                left: 0%;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
+                left: 100%;
+            }
+        }
+
+        button:active {
+            box-shadow: 0 0 0 0 transparent;
+            -webkit-transition: box-shadow 0.2s ease-in;
+            -moz-transition: box-shadow 0.2s ease-in;
+            transition: box-shadow 0.2s ease-in;
+            transform: translate(0em, 0.2em);
+        }
+
+        button a {
+            text-decoration: none;
+            color: azure;
+            font-size: 20px;
+            font-family: 'Poppins', sans-serif;
+            ;
+        }
+
+        video {
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            /* Ensures the video stays behind the content */
+            object-fit: cover;
+            margin: auto;
+            position: absolute;
+            /* overflow-clip-margin: content-box; */
+            /* overflow: clip; */
+        }
+
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border-radius: 50%;
+            height: 96px;
+            width: 96px;
+            animation: rotate_3922 1.2s linear infinite;
+            background-color: #01ffaa;
+            background-image: linear-gradient(#01ffaa, #84cdfa, #5ad1cd);
+        }
+
+        .loading span {
+            position: absolute;
+            border-radius: 50%;
+            height: 100%;
+            width: 100%;
+            background-color: #01ffaa;
+            background-image: linear-gradient(#01ffaa, #84cdfa, #5ad1cd);
+        }
+
+        .loading span:nth-of-type(1) {
+            filter: blur(5px);
+        }
+
+        .loading span:nth-of-type(2) {
+            filter: blur(10px);
+        }
+
+        .loading span:nth-of-type(3) {
+            filter: blur(25px);
+        }
+
+        .loading span:nth-of-type(4) {
+            filter: blur(50px);
+        }
+
+        .loading::after {
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            background-color: #fff;
+            border: solid 5px #ffffff;
+            border-radius: 50%;
+        }
+
+        @keyframes rotate_3922 {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+    </style>
+    <script>
+        var myVar;
+
+        function myFunction() {
+            myVar = setTimeout(showPage, 2000);
+        }
+
+        function showPage() {
+            document.getElementById("loading").style.display = "none";
+            document.getElementById("container").style.display = "block";
+        }
+    </script>
+
+
+</head>
+
+<body onload="myFunction()">
+    <div class="loading" id="loading">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="container" id="container" style="display:none;">
+        <video width="100%" playsinline autoplay loop muted>
+            <source src="https://www.medicacom.tn/media/bannieres/AdobeStock_480888742_Video_4K_Preview.mp4"
+                type="video/mp4">
+        </video>
+
+        <div class="content" id="content">
+            <div class="logo" id="logo">
+                <img src="https://www.medicacom.tn/media/logo.png" alt="Our Logo">
+            </div>
+            <div class="welcome">
+                <h2>Bienvenue dans notre prédicteur d'infection BMR</h2>
+            </div>
+
+            <div class="buttons">
+                <button><a href="{{ url_for('form01')}}">Prédire si le patient est infecté ou non</a></button>
+
+                <button><a href="{{ url_for('form_BMR')}}">Prédire quel type de BMR</a></button>
+
+                <button><a href="{{ url_for('afficher')}}">Affichier les données 01</a></button>
+
+                <button><a href="{{ url_for('afficher_BMR')}}">Affichier les données BMR</a></button>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résultat de la prédiction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://static.vecteezy.com/system/resources/previews/007/784/841/non_2x/health-and-science-medical-innovation-concept-abstract-geometric-futuristic-background-from-hexagons-pattern-light-blue-radiant-background-illustration-vector.jpg');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .card {
+            width: 30%;
+            height: 30%;
+            border-radius: 30px;
+            background-color: rgba(227, 253, 255, 0.797);
+            box-shadow: 15px 15px 30px #bebebe,
+                -15px -15px 30px #ffffff;
+            justify-content: center;
+        }
+
+        h2 {
+            margin-top: 10%;
+            position: center;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            color: #3498db;
+            display: block;
+            justify-content: center;
+
+        }
+
+        p {
+            margin-top: 5%;
+            position: center;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            color: #3498db;
+            display: block;
+            justify-content: center;
+        }
+
+        button a {
+            text-decoration: none;
+            color: #3498db;
+        }
+
+        button {
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+            display: block;
+            border: transparent;
+            cursor: pointer;
+            margin-top: 50px;
+            font-family: Arial, sans-serif;
+            width: 250px;
+            background-color: rgba(227, 253, 255, 0.399);
+            position: relative;
+            padding: 10px 20px;
+            border-radius: 7px;
+            font-size: 14px;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: #fff;
+            overflow: hidden;
+            -webkit-transition: all 0.2s ease-in;
+            -moz-transition: all 0.2s ease-in;
+            transition: all 0.2s ease-in;
+        }
+
+        button:hover {
+            background: rgba(123, 244, 255, 0.469);
+            box-shadow: 0 0 30px 5px rgba(123, 244, 255, 0.469);
+            -webkit-transition: all 0.2s ease-out;
+            -moz-transition: all 0.2s ease-out;
+            transition: all 0.2s ease-out;
+            background: rgb(2, 0, 36);
+            background: linear-gradient(90deg, rgb(124, 189, 254) 0%, rgb(104, 203, 223) 100%);
+        }
+
+        button:hover a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        button:active {
+            transform: translate(0em, 0.2em);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <h2>Résultat de la prédiction</h2>
+        <p>{{ prediction }}</p>
+    </div>
+    <div class="back">
+        <button>
+            <a href="{{ url_for('home')}}">Retour à l'acceuil</a>
+        </button>
+    </div>
+</body>
+
+</html>
